@@ -1,0 +1,174 @@
+// @ts-nocheck
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import {
+  FileText,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  Download,
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  Truck,
+  Tag,
+  Star,
+  X,
+  Edit3,
+  Check,
+  AlertTriangle,
+  Calendar,
+  Filter,
+  Send,
+  User,
+  MapPin,
+  MessageSquare,
+  Paperclip,
+  Smile,
+  ImageIcon,
+  ArrowLeft,
+  ChevronDown,
+  Box,
+  Plus,
+  Layers,
+  RefreshCw,
+  ArrowRight
+} from "lucide-react";
+
+export interface Rfq {
+  id: string;
+  productName: string;
+  category: string;
+  qtyVal: number;
+  qtyUnit: string;
+  quantity: string;
+  priceVal: number;
+  priceUnit: string;
+  pricePerUnit: string;
+  totalValue: string;
+  status: "Approved" | "Pending" | "Rejected";
+  date: string;
+  time: string;
+  sku: string;
+  description: string;
+  image: string;
+  services: { name: string; cost: string }[];
+  supplier: {
+    name: string;
+    rating: string;
+    reviews: string;
+    location: string;
+    verified: boolean;
+  };
+  budgetRange?: string;
+  dueDate?: string;
+  sourcingType?: string;
+  contactPerson?: string;
+  contactEmail?: string;
+  businessName?: string;
+  contactPhone?: string;
+  contactIndustry?: string;
+  contactLocation?: string;
+}
+
+interface RfqManagementProps {
+  rfqList: Rfq[];
+  setRfqList: React.Dispatch<React.SetStateAction<Rfq[]>>;
+  selectedRfqId: string | null;
+  setSelectedRfqId: (id: string | null) => void;
+  filterSegment: "All" | "Pending" | "Approved";
+  setFilterSegment: (segment: "All" | "Pending" | "Approved") => void;
+}
+
+export default function RfqManagement({
+  rfqList,
+  setRfqList,
+  selectedRfqId,
+  setSelectedRfqId,
+  filterSegment,
+  setFilterSegment
+}: RfqManagementProps) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editQty, setEditQty] = useState("");
+  const [dashboardToastActive, setDashboardToastActive] = useState(false);
+  const [dashboardToastDetails, setDashboardToastDetails] = useState({ title: "", body: "" });
+  const [dashboardRfqNotes, setDashboardRfqNotes] = useState<Record<string, { id: number, text: string, author: string, time: string }[]>>({});
+  const [dashboardNoteInput, setDashboardNoteInput] = useState("");
+  const [dashboardRfqChats, setDashboardRfqChats] = useState<Record<string, { id: number, text: string, sender: string, time: string, type: 'incoming' | 'outgoing' }[]>>({});
+  const [dashboardChatInput, setDashboardChatInput] = useState("");
+
+  const triggerDashboardToast = (title: string, body: string) => {
+    setDashboardToastDetails({ title, body });
+    setDashboardToastActive(true);
+    setTimeout(() => setDashboardToastActive(false), 3500);
+  };
+
+
+
+  const [editPrice, setEditPrice] = useState("");
+  const [editUnit, setEditUnit] = useState("");
+  // Statistics calculation based on live rfqList state
+  const totalCount = 1284; // Lock to match mockup or compute if needed
+  const pendingCount = 156;
+  const approvedCount = 942;
+  const rejectedCount = 186;
+
+  const selectedRfq = rfqList.find((r) => r.id === selectedRfqId) || null;
+
+  // Filtered List
+  const filteredRfqs = rfqList.filter((rfq) => {
+    if (filterSegment === "All") return true;
+    return rfq.status === filterSegment;
+  });
+
+  const handleStatusChange = (id: string, newStatus: "Approved" | "Pending" | "Rejected") => {
+    setRfqList((prev) =>
+      prev.map((rfq) => (rfq.id === id ? { ...rfq, status: newStatus } : rfq))
+    );
+  };
+
+  const handleEditClick = (rfq: Rfq) => {
+    setEditQty(rfq.qtyVal.toString());
+    setEditPrice(rfq.priceVal.toString());
+    setEditUnit(rfq.qtyUnit);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedRfqId) return;
+
+    const qty = parseFloat(editQty) || 0;
+    const price = parseFloat(editPrice) || 0;
+    const total = qty * price;
+
+    // Format total value cleanly (e.g. SAR 960K, SAR 1.2M, or normal value if smaller)
+    let formattedTotal = `SAR ${(total).toLocaleString()}`;
+    if (total >= 1000000) {
+      formattedTotal = `SAR ${(total / 1000000).toFixed(1)}M`;
+    } else if (total >= 1000) {
+      formattedTotal = `SAR ${(total / 1000).toFixed(0)}K`;
+    }
+
+    setRfqList((prev) =>
+      prev.map((rfq) => {
+        if (rfq.id === selectedRfqId) {
+          return {
+            ...rfq,
+            qtyVal: qty,
+            priceVal: price,
+            qtyUnit: editUnit,
+            quantity: `${qty.toLocaleString()} ${editUnit}`,
+            pricePerUnit: `SAR ${price.toLocaleString()}`,
+            totalValue: formattedTotal
+          };
+        }
+        return rfq;
+      })
+    );
+    setIsEditModalOpen(false);
+  };
+
+  

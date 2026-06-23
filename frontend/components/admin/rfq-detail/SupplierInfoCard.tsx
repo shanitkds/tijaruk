@@ -1,0 +1,79 @@
+// @ts-nocheck
+"use client";
+
+import React from "react";
+import { Building, MapPin, Mail, Phone } from "lucide-react";
+import { Rfq } from "../RfqManagement";
+
+interface SupplierInfoCardProps {
+  rfq: Rfq;
+  supplierEmail: string;
+  supplierPhone: string;
+  onViewProfile: () => void;
+}
+
+export default function SupplierInfoCard({ rfq, supplierEmail, supplierPhone, onViewProfile }: SupplierInfoCardProps) {
+  return (
+    <div className="bg-white rounded-[20px] border border-[#eef0f3] p-6 shadow-sm">
+      <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-4">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-[#500c56]/10 flex items-center justify-center text-[#500c56]">
+            <Building className="w-4 h-4" />
+          </div>
+          <h3 className="font-bold text-gray-900 text-sm">Supplier Information</h3>
+        </div>
+        {rfq.supplier.verified ? (
+          <span className="bg-[#e2f6ed] text-[#12b86e] text-[9px] font-bold px-2 py-0.5 rounded-full">
+            Verified Supplier
+          </span>
+        ) : null}
+      </div>
+
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center font-bold text-gray-400 text-lg shadow-inner">
+            {rfq.supplier.name[0]}
+          </div>
+          <div>
+            <h4 className="font-black text-gray-900 text-sm">{rfq.supplier.name}</h4>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className="text-[10px] text-gray-500 font-semibold flex items-center gap-0.5">
+                <MapPin className="w-3 h-3 text-gray-400" />
+                {rfq.supplier.location}
+              </span>
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={onViewProfile}
+          className="px-3 py-1.5 border border-[#500c56] text-[#500c56] hover:bg-[#500c56]/5 text-xs font-bold rounded-lg transition-all"
+        >
+          View Profile
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 pt-4 border-t border-gray-100">
+        <div className="flex items-center gap-2.5 p-3 rounded-xl bg-blue-50/50 border border-blue-50">
+          <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-blue-500 shadow-sm shrink-0">
+            <Mail className="w-3.5 h-3.5" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[8px] text-gray-400 font-bold uppercase tracking-wide">Email</span>
+            <span className="text-xs font-bold text-gray-700">{supplierEmail}</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2.5 p-3 rounded-xl bg-emerald-50/50 border border-emerald-50">
+          <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-emerald-500 shadow-sm shrink-0">
+            <Phone className="w-3.5 h-3.5" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[8px] text-gray-400 font-bold uppercase tracking-wide">Phone</span>
+            <span className="text-xs font-bold text-gray-700">{supplierPhone}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

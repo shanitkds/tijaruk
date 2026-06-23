@@ -1,0 +1,23 @@
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ("business", "0006_delete_pendingbusinessregistration"),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name="BusinessUserSettings",
+            fields=[
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("two_factor_enabled", models.BooleanField(default=False)),
+                ("user", models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name="business_settings", to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+    ]
