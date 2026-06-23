@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { getMediaUrl } from "../../lib/media";
 import { useRouter } from "next/navigation";
 import {
   Package,
@@ -1864,7 +1865,7 @@ export default function ProductManagement({
                 <div>
                   <div className="relative h-44 w-full rounded-xl overflow-hidden border border-gray-100 bg-gray-50 shadow-inner">
                     <img
-                      src={selectedDetailImage || selectedProduct.image}
+                      src={getMediaUrl(selectedDetailImage || selectedProduct.image)}
                       alt={selectedProduct.name}
                       className="w-full h-full object-cover"
                     />
@@ -1909,7 +1910,7 @@ export default function ProductManagement({
                           : "border border-gray-200"
                           }`}
                       >
-                        <img src={selectedProduct.image} className="w-full h-full object-cover" />
+                        <img src={getMediaUrl(selectedProduct.image)} className="w-full h-full object-cover" />
                       </button>
                     )}
                     {selectedProduct.internalImages.map((image, index) => (
@@ -1922,7 +1923,7 @@ export default function ProductManagement({
                           : "border border-gray-200"
                           }`}
                       >
-                        <img src={image} className="w-full h-full object-cover" />
+                        <img src={getMediaUrl(image)} className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>

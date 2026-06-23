@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ClipboardList } from "lucide-react";
 import type { UserProduct } from "./userDashboardData";
+import { getMediaUrl } from "../../lib/media";
 
 export default function ProductCard({
   product,
@@ -30,7 +31,7 @@ export default function ProductCard({
             className="object-cover"
             fill
             sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
-            src={product.image}
+            src={getMediaUrl(product.image)}
           />
         ) : (
           <span className="absolute inset-0 flex items-center justify-center text-xs font-medium text-[#9ca3af]">
