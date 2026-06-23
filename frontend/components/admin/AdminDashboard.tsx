@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { getMediaUrl } from "../../lib/media";
 import { useRouter, usePathname } from "next/navigation";
 import {
   FileText,
@@ -1322,7 +1323,7 @@ export default function AdminDashboard({
                     >
                       <div className="relative h-44 w-full overflow-hidden bg-gray-100">
                         <img
-                          src={product.image}
+                          src={getMediaUrl(product.image)}
                           alt={product.name}
                           className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />

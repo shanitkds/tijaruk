@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { getMediaUrl } from "../../lib/media";
 import { useRouter } from "next/navigation";
 import {
   Camera,
@@ -172,7 +173,7 @@ export default function PublicProfilePage() {
                   <img
                     alt={`${profile.name} profile`}
                     className="size-full object-cover"
-                    src={profile.avatar}
+                    src={getMediaUrl(profile.avatar)}
                   />
                 ) : (
                   profile.initial

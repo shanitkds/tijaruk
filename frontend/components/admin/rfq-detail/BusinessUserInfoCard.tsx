@@ -3,6 +3,7 @@
 
 import React from "react";
 import { User, MapPin, Mail, Phone } from "lucide-react";
+import { getMediaUrl } from "../../../lib/media";
 
 interface BusinessUserInfoCardProps {
   businessUser: any;
@@ -30,7 +31,7 @@ export default function BusinessUserInfoCard({ businessUser, onViewProfile }: Bu
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden flex items-center justify-center font-bold text-gray-400 text-lg shadow-inner">
             {businessUser.photo ? (
-              <img src={businessUser.photo} alt={businessUser.fullName || businessUser.businessName} className="h-full w-full object-cover" />
+              <img src={getMediaUrl(businessUser.photo)} alt={businessUser.fullName || businessUser.businessName} className="h-full w-full object-cover" />
             ) : (
               (businessUser.businessName || businessUser.fullName || "B")[0]
             )}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { getMediaUrl } from "../../lib/media";
 import { CircleUserRound, LogOut, Menu, Plus, Search } from "lucide-react";
 import api from "../../api/axios";
 import {
@@ -162,7 +163,7 @@ export default function UserDashboardHeader({ onOpenMenu }: { onOpenMenu: () => 
               <img
                 alt={`${displayName} profile`}
                 className="size-full object-cover"
-                src={currentUser.photo}
+                src={getMediaUrl(currentUser.photo)}
               />
             ) : (
               usernameInitial
@@ -177,7 +178,7 @@ export default function UserDashboardHeader({ onOpenMenu }: { onOpenMenu: () => 
                     <img
                       alt={`${displayName} profile`}
                       className="size-full object-cover"
-                      src={currentUser.photo}
+                      src={getMediaUrl(currentUser.photo)}
                     />
                   ) : (
                     usernameInitial

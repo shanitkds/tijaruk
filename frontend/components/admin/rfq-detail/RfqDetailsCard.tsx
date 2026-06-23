@@ -3,6 +3,7 @@
 
 import React from "react";
 import { FileText, Globe, Paperclip } from "lucide-react";
+import { getMediaUrl } from "../../../lib/media";
 import { Rfq } from "../RfqManagement";
 
 interface RfqDetailsCardProps {
@@ -30,7 +31,7 @@ export default function RfqDetailsCard({ rfq }: RfqDetailsCardProps) {
 
       <div className="flex flex-col sm:flex-row gap-5">
         <div className="w-full sm:w-32 h-32 rounded-xl overflow-hidden shrink-0 border border-gray-100">
-          <img src={rfq.image} alt={rfq.productName} className="w-full h-full object-cover" />
+          <img src={getMediaUrl(rfq.image)} alt={rfq.productName} className="w-full h-full object-cover" />
         </div>
         <div className="flex-1 space-y-3">
           <div>

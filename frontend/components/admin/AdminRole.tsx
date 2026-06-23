@@ -3,6 +3,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { getMediaUrl } from "../../lib/media";
 import { IoSaveSharp } from "react-icons/io5";
 import {
   BarChart3,
@@ -168,7 +169,7 @@ function AdminRoleHeader({ actionLabel = "" }: { actionLabel?: string }) {
           type="button"
         >
           {adminProfile.photo ? (
-            <img alt={adminProfile.name} className="size-full object-cover" src={adminProfile.photo} />
+            <img alt={adminProfile.name} className="size-full object-cover" src={getMediaUrl(adminProfile.photo)} />
           ) : (
             adminProfile.name.trim().charAt(0).toUpperCase() || "A"
           )}

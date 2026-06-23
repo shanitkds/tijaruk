@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { getMediaUrl } from "../../lib/media";
 import { useRouter } from "next/navigation";
 import {
   Users,
@@ -1688,7 +1689,7 @@ export default function SupplierManagement({
                     <div className="flex items-center gap-3 text-left">
                       <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 shrink-0">
                         <img
-                          src={selectedSupplier.primaryContact.avatar}
+                          src={getMediaUrl(selectedSupplier.primaryContact.avatar)}
                           alt={selectedSupplier.primaryContact.name}
                           className="w-full h-full object-cover"
                         />
@@ -1925,7 +1926,7 @@ export default function SupplierManagement({
                         <div className="flex items-center gap-3 text-left">
                           <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 shrink-0">
                             <img
-                              src={selectedSupplier.primaryContact.avatar}
+                              src={getMediaUrl(selectedSupplier.primaryContact.avatar)}
                               alt={selectedSupplier.primaryContact.name}
                               className="w-full h-full object-cover"
                             />

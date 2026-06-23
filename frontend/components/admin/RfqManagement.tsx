@@ -3,6 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "../../api/axios";
+import { getMediaUrl } from "../../lib/media";
 import { adminToast } from "./AdminToast";
 import {
   FileText,
@@ -370,7 +371,7 @@ export default function RfqManagement({
                           <td className="py-4">
                             <div className="flex items-center gap-3">
                               <div className="w-9 h-9 rounded-xl overflow-hidden shrink-0">
-                                <img src={rfq.image} alt={rfq.productName} className="w-full h-full object-cover" />
+                                <img src={getMediaUrl(rfq.image)} alt={rfq.productName} className="w-full h-full object-cover" />
                               </div>
                               <div>
                                 <p className="font-bold text-gray-800 line-clamp-1">{rfq.productName.split(" (")[0]}</p>
@@ -494,7 +495,7 @@ export default function RfqManagement({
                 <div>
                   <h4 className="border-l-[3px] border-[#500c56] pl-2 font-black text-gray-800 text-[13px]">Product Information</h4>
                   <div className="w-full h-36 rounded-[14px] overflow-hidden mt-3">
-                    <img src={selectedRfq.image} alt={selectedRfq.productName} className="w-full h-full object-cover" />
+                    <img src={getMediaUrl(selectedRfq.image)} alt={selectedRfq.productName} className="w-full h-full object-cover" />
                   </div>
                   <h5 className="text-[14px] font-black text-gray-900 mt-3">{selectedRfq.productName}</h5>
                   <div className="flex items-center gap-2 mt-1.5">
@@ -561,7 +562,7 @@ export default function RfqManagement({
                       <div className="w-12 h-12 rounded-xl bg-white border border-gray-100 overflow-hidden flex items-center justify-center font-bold text-gray-300 text-lg shadow-sm">
                         {selectedBusinessUser?.photo ? (
                           <img
-                            src={selectedBusinessUser.photo}
+                            src={getMediaUrl(selectedBusinessUser.photo)}
                             alt={selectedUserFullName}
                             className="h-full w-full object-cover"
                           />

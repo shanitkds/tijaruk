@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Footer from "../shares/Footer";
 import Navbar from "../shares/Navbar";
+import { getMediaUrl } from "../../lib/media";
 
 const HERO_IMAGE = "/international/hero.webp";
 const WHO_IMAGE = "/international/premium-rice.webp";
@@ -116,7 +117,7 @@ function ProductCard({ product }) {
           height={331}
           loading="lazy"
           sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 400px"
-          src={product.image}
+          src={getMediaUrl(product.image)}
           width={400}
         />
 

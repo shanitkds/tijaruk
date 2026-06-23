@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { getMediaUrl } from "../../lib/media";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CircleUserRound, LayoutDashboard, LogOut, UserPlus } from "lucide-react";
@@ -262,7 +263,7 @@ export default function Navbar() {
                       <img
                         alt={`${displayName} profile`}
                         className="size-full object-cover"
-                        src={currentUser.photo}
+                        src={getMediaUrl(currentUser.photo)}
                       />
                     ) : (
                       displayInitial

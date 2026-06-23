@@ -1,5 +1,6 @@
 import { Building2, CheckCircle2, MapPin, UsersRound } from "lucide-react";
 import type { UserProfileData } from "./userDashboardData";
+import { getMediaUrl } from "../../lib/media";
 
 export default function ProfileCompanyDetails({
   company,
@@ -25,7 +26,7 @@ export default function ProfileCompanyDetails({
               <img
                 alt={`${company.name} logo`}
                 className="size-full rounded-xl object-contain p-1"
-                src={company.logo}
+                src={getMediaUrl(company.logo)}
               />
             ) : (
               <Building2 className="size-5" />

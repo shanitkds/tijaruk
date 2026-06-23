@@ -3,6 +3,7 @@
 
 import React from "react";
 import { Building2, CalendarDays, FileText, User, X } from "lucide-react";
+import { getMediaUrl } from "../../../lib/media";
 
 interface BusinessProfileModalProps {
   businessUser: any;
@@ -53,7 +54,7 @@ export default function BusinessProfileModal({ businessUser, onClose }: Business
             <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-[#f5edf6] text-lg font-black text-[#500c56] ring-1 ring-[#500c56]/10 sm:h-14 sm:w-14">
               {businessUser.photo ? (
                 <img
-                  src={businessUser.photo}
+                  src={getMediaUrl(businessUser.photo)}
                   alt={businessUser.fullName || businessUser.businessName}
                   className="h-full w-full object-cover"
                 />

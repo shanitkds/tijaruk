@@ -3,6 +3,7 @@
 
 import React from "react";
 import { X, User, Building } from "lucide-react";
+import { getMediaUrl } from "../../../lib/media";
 import { Rfq } from "../RfqManagement";
 
 interface SupplierProfileModalProps {
@@ -18,7 +19,7 @@ export default function SupplierProfileModal({ rfq, onClose }: SupplierProfileMo
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden flex items-center justify-center text-[#500c56] font-black text-xl">
               {rfq.supplier.logo ? (
-                <img src={rfq.supplier.logo} alt={rfq.supplier.name} className="w-full h-full object-cover" />
+                <img src={getMediaUrl(rfq.supplier.logo)} alt={rfq.supplier.name} className="w-full h-full object-cover" />
               ) : (
                 rfq.supplier.name[0]
               )}

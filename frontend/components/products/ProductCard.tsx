@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { getMediaUrl } from "../../lib/media";
 
 export default function ProductCard({ product, compact = false, priority = false }) {
   const baseImageRef = useRef(null);
@@ -91,7 +92,7 @@ export default function ProductCard({ product, compact = false, priority = false
             height={331}
             loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            src={product.image}
+            src={getMediaUrl(product.image)}
             width={400}
           />
         </div>

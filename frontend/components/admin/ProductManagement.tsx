@@ -1060,7 +1060,7 @@ export default function ProductManagement({
                           <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gray-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full z-10">
                             Internal {index + 1}
                           </span>
-                          <img src={image} className="w-full h-full object-cover rounded-lg" />
+                          <img src={getMediaUrl(image)} className="w-full h-full object-cover rounded-lg" />
                         </div>
                       ))}
                     </div>
@@ -1314,7 +1314,7 @@ export default function ProductManagement({
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-50 rounded-lg border border-gray-150 overflow-hidden p-1 shrink-0">
-                      {productList[0]?.image ? <img src={productList[0].image} className="w-full h-full object-cover mix-blend-multiply" /> : <Package className="w-4 h-4 text-gray-300 m-auto mt-2" />}
+                      {productList[0]?.image ? <img src={getMediaUrl(productList[0].image)} className="w-full h-full object-cover mix-blend-multiply" /> : <Package className="w-4 h-4 text-gray-300 m-auto mt-2" />}
                     </div>
                     <div>
                       <h5 className="text-[11px] font-extrabold text-gray-900 line-clamp-1">{productList[0]?.name || "No products yet"}</h5>
@@ -1326,7 +1326,7 @@ export default function ProductManagement({
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-50 rounded-lg border border-gray-150 overflow-hidden p-1 shrink-0">
-                      {productList[1]?.image ? <img src={productList[1].image} className="w-full h-full object-cover mix-blend-multiply" /> : <Package className="w-4 h-4 text-gray-300 m-auto mt-2" />}
+                      {productList[1]?.image ? <img src={getMediaUrl(productList[1].image)} className="w-full h-full object-cover mix-blend-multiply" /> : <Package className="w-4 h-4 text-gray-300 m-auto mt-2" />}
                     </div>
                     <div>
                       <h5 className="text-[11px] font-extrabold text-gray-900 line-clamp-1">{productList[1]?.name || "No product"}</h5>
@@ -1338,7 +1338,7 @@ export default function ProductManagement({
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-50 rounded-lg border border-gray-150 overflow-hidden p-1 shrink-0">
-                      {productList[2]?.image ? <img src={productList[2].image} className="w-full h-full object-cover mix-blend-multiply" /> : <Package className="w-4 h-4 text-gray-300 m-auto mt-2" />}
+                      {productList[2]?.image ? <img src={getMediaUrl(productList[2].image)} className="w-full h-full object-cover mix-blend-multiply" /> : <Package className="w-4 h-4 text-gray-300 m-auto mt-2" />}
                     </div>
                     <div>
                       <h5 className="text-[11px] font-extrabold text-gray-900 line-clamp-1">{productList[2]?.name || "No product"}</h5>
@@ -1734,7 +1734,7 @@ export default function ProductManagement({
                           <td className="py-4">
                             <div className="flex items-center gap-3">
                               <div className="w-9 h-9 rounded-lg overflow-hidden border border-gray-100 shrink-0">
-                                <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                                <img src={getMediaUrl(p.image)} alt={p.name} className="w-full h-full object-cover" />
                               </div>
                               <div>
                                 <p className="font-bold text-gray-800 line-clamp-1">{p.name}</p>

@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getMediaUrl } from "../../lib/media";
 import {
   BriefcaseBusiness,
   Check,
@@ -351,7 +352,7 @@ export default function CreateUser({ userId = null, showBusinessHeader = false }
               type="button"
             >
               {adminProfile.photo ? (
-                <img alt={adminProfile.name} className="h-full w-full object-cover" src={adminProfile.photo} />
+                <img alt={adminProfile.name} className="h-full w-full object-cover" src={getMediaUrl(adminProfile.photo)} />
               ) : (
                 adminProfile.name.trim().charAt(0).toUpperCase() || "A"
               )}

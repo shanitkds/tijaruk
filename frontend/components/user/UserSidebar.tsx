@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { getMediaUrl } from "../../lib/media";
 import api from "../../api/axios";
 import { getAuthSession, type AuthUser } from "../../lib/auth";
 import {
@@ -285,7 +286,7 @@ export default function UserSidebar({ onNavigate }: { onNavigate?: () => void })
               <img
                 alt={`${displayName} profile`}
                 className="size-full object-cover"
-                src={currentUser.photo}
+                src={getMediaUrl(currentUser.photo)}
               />
             ) : (
               userInitial

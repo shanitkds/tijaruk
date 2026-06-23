@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import { getMediaUrl } from "../../lib/media";
 import { useRouter } from "next/navigation";
 import api from "../../api/axios";
 import { adminToast } from "./AdminToast";
@@ -1465,7 +1466,7 @@ export default function BusinessManagement({
                               <div className={`w-9 h-9 rounded-lg ${b.logoColor} flex items-center justify-center overflow-hidden shrink-0 shadow-sm text-sm font-black text-white`}>
                                 {b.primaryContact.avatar ? (
                                   <img
-                                    src={b.primaryContact.avatar}
+                                    src={getMediaUrl(b.primaryContact.avatar)}
                                     alt={`${b.name} profile`}
                                     className="h-full w-full object-cover"
                                   />
@@ -1590,7 +1591,7 @@ export default function BusinessManagement({
                 <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br from-[#500c56] to-[#7a247f]">
                   {selectedBusiness.primaryContact.avatar ? (
                     <img
-                      src={selectedBusiness.primaryContact.avatar}
+                      src={getMediaUrl(selectedBusiness.primaryContact.avatar)}
                       alt={`${selectedBusiness.name} logo`}
                       className="w-full h-full object-cover"
                     />
@@ -1765,7 +1766,7 @@ export default function BusinessManagement({
                         <div className="w-11 h-11 rounded-full overflow-hidden border border-gray-200 bg-[#500c56] shrink-0 shadow-inner">
                           {selectedBusiness.primaryContact.avatar ? (
                             <img
-                              src={selectedBusiness.primaryContact.avatar}
+                              src={getMediaUrl(selectedBusiness.primaryContact.avatar)}
                               alt={`${selectedBusiness.name} logo`}
                               className="w-full h-full object-cover"
                             />

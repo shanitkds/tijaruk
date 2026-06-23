@@ -1,5 +1,6 @@
 import { Camera, CheckCircle2, Edit3, MapPin } from "lucide-react";
 import type { UserProfileData } from "./userDashboardData";
+import { getMediaUrl } from "../../lib/media";
 
 export default function UserProfileHero({
   onEditProfile,
@@ -32,7 +33,7 @@ export default function UserProfileHero({
               <img
                 alt={`${user.username} profile`}
                 className="size-full object-cover"
-                src={user.avatar}
+                src={getMediaUrl(user.avatar)}
               />
             ) : (
               usernameInitial
