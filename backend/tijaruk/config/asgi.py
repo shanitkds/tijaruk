@@ -10,6 +10,7 @@ django.setup()
 from channels.routing import ProtocolTypeRouter, URLRouter
 from notifications.middleware import JWTAuthMiddleware
 from notifications.routing import websocket_urlpatterns
+from django.conf import settings
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
@@ -17,3 +18,8 @@ application = ProtocolTypeRouter({
         URLRouter(websocket_urlpatterns)
     ),
 })
+
+# Wrap with WhiteNoise only when STATIC_ROOT exists (i.e. after collectstatic)
+if settings.STATIC_ROOT and settings.STATIC_ROOT.exists():
+    from whitenoise import WhiteNoise
+    application = WhiteNoise(application, root=str(settings.STATIC_ROOT), prefix='static')
