@@ -1,19 +1,21 @@
 from .base import *
 
-import dj_database_url
-
 DEBUG = False
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
-# ── Database ──────────────────────────────────────────────────────────────────
-# dj_database_url.config() reads DATABASE_URL from the environment automatically.
-DATABASES = {
-    "default": dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=True,
-    )
-}
+# Insert WhiteNoise after SecurityMiddleware for production static file serving
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 # ── Sessions — DB-backed so they survive Render restarts ──────────────────────
 SESSION_ENGINE = "django.contrib.sessions.backends.db"

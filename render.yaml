@@ -1,9 +1,3 @@
-databases:
-  - name: tijaruk-db
-    databaseName: tijaruk
-    user: tijaruk
-    plan: free
-
 services:
   - type: web
     name: tijaruk-backend
@@ -19,16 +13,12 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
-      - key: DATABASE_URL
-        fromDatabase:
-          name: tijaruk-db
-          property: connectionString
       - key: ALLOWED_HOSTS
-        sync: false   # set manually in Render dashboard: your-service.onrender.com
+        sync: false
       - key: CORS_ALLOWED_ORIGINS
-        sync: false   # set manually: https://your-frontend.vercel.app
+        sync: false
       - key: FRONTEND_URL
-        sync: false   # set manually: https://your-frontend.vercel.app
+        sync: false
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: EMAIL_BACKEND
