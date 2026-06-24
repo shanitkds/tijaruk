@@ -200,7 +200,7 @@ export default function ProductManagement({
       unitName: product.unit_name || "Units",
       status:
         product.stock_quantity === 0
-          ? "Out of Stock"
+          ? "Out of Stock "
           : product.status === "ACTIVE"
             ? "Active"
             : "Inactive",
@@ -209,7 +209,7 @@ export default function ProductManagement({
       sector: product.category_name,
       description: product.description || "",
       supplier: {
-        name: product.supplier_name || "Not assigned",
+        name: product.supplier_name || "Not Assigned",
         rating: "0",
         reviews: "0",
         location: product.supplier_location || "No supplier selected",
